@@ -2,6 +2,8 @@ from typing import List
 
 import requests
 import socket
+import pathfinder
+import pkg_resources
 from eth_utils import to_normalized_address
 from raiden_libs.types import Address
 
@@ -163,6 +165,7 @@ def test_get_info(
     assert response.json() == {
             'IP': socket.gethostbyname(socket.gethostname()),
             'Settings': 'PLACEHOLDER',
-            'Version': '0.1',
-            'Dude who runs it': 'Dominik',
+            'Version': pkg_resources.require(pathfinder.__name__)[0].version,
+            'Operator': 'Dominik',
+            'Message': 'This is for Paul'
         }
