@@ -39,8 +39,8 @@ class PathfinderResource(Resource):
         )
         if token_network is None:
             return {
-                'error': 'Unsupported token network: {}'.format(token_network_address)
-            }, 400
+                       'error': 'Unsupported token network: {}'.format(token_network_address)
+                   }, 400
 
         return None
 
@@ -110,15 +110,22 @@ class PathsResource(PathfinderResource):
 
         return {'result': paths}, 200
 
+
 class InfoResource(PathfinderResource):
     def get(self):
-        ip = socket.gethostbyname(socket.gethostname())  # this is the internal IP address, scoped out soon anyway
+        ip = socket.gethostbyname(socket.gethostname())
+        # this is the internal IP address, scoped out soon anyway
         settings = 'PLACEHOLDER'
         version = pkg_resources.require(pathfinder.__name__)[0].version
         operator = 'Dominik'
         message = 'This is for Paul'
 
-        return {'IP': ip, 'Settings': settings, 'Version': version, 'Operator': operator, 'Message': message}, 200
+        return {'ip': ip,
+                'settings': settings,
+                'version': version,
+                'operator': operator,
+                'message': message}, 200
+
 
 class ServiceApi:
     def __init__(self, pathfinding_service: PathfindingService) -> None:

@@ -163,9 +163,9 @@ def test_get_info(
     response = requests.get(url)
     assert response.status_code == 200
     assert response.json() == {
-            'IP': socket.gethostbyname(socket.gethostname()),
-            'Settings': 'PLACEHOLDER',
-            'Version': pkg_resources.require(pathfinder.__name__)[0].version,
-            'Operator': 'Dominik',
-            'Message': 'This is for Paul'
+            'ip': socket.gethostbyname(socket.gethostname()),
+            'settings': 'PLACEHOLDER',
+            'version': pkg_resources.require(pathfinder.__name__)[0].version,
+            'operator': 'Dominik',
+            'message': 'This is for Paul'
         }
