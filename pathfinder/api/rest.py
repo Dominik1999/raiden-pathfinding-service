@@ -1,6 +1,9 @@
 from typing import Dict, List, Optional, Tuple
 
 import gevent
+import socket
+import pathfinder
+import pkg_resources
 from eth_utils import is_address, is_checksum_address
 from flask import Flask
 from flask_restful import Api, Resource, reqparse
@@ -108,6 +111,22 @@ class PathsResource(PathfinderResource):
         return {'result': paths}, 200
 
 
+class InfoResource(PathfinderResource):
+    def get(self):
+        ip = socket.gethostbyname(socket.gethostname())
+        # this is the internal IP address, scoped out soon anyway
+        settings = 'PLACEHOLDER'
+        version = pkg_resources.require(pathfinder.__name__)[0].version
+        operator = 'Dominik'
+        message = 'This is for Paul'
+
+        return {'ip': ip,
+                'settings': settings,
+                'version': version,
+                'operator': operator,
+                'message': message}, 200
+
+
 class ServiceApi:
     def __init__(self, pathfinding_service: PathfindingService) -> None:
         self.flask_app = Flask(__name__)
@@ -117,6 +136,7 @@ class ServiceApi:
 
         resources: List[Tuple[str, Resource, Dict]] = [
             ('/<token_network_address>/paths', PathsResource, {}),
+            ('/info', InfoResource, {}),
         ]
 
         for endpoint_url, resource, kwargs in resources:
