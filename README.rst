@@ -24,6 +24,21 @@ To run the PFS follow the steps below:
 
     $ pathfinder --eth-rpc http://localhost:8545
 
+Note: There are additional command line arguments that can be added starting the PFS.
+
+==================  ============================================================
+Argument            Description
+==================  ============================================================
+--eth-rpc           | Ethereum node RPC URI (e.g. to use a infura node)
+                    | default is 'http://localhost:8545'
+--registry-address  | Address of the token network register
+--start-block       | Block to start syncing at
+                    | default is '0'
+--confirmations     | Number of block confirmations to wait for
+                    | default is '8'
+==================  ============================================================
+
+
 Developing
 ----------
 
