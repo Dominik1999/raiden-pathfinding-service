@@ -125,6 +125,7 @@ class InfoResource(PathfinderResource):
     def get(self):
         ip = socket.gethostbyname(socket.gethostname())
         # this is the internal IP address, scoped out soon anyway
+<<<<<<< HEAD
         settings = 'PLACEHOLDER FOR PATHFINDER SETTINGS'
         version = pkg_resources.require(pathfinder.__name__)[0].version
         operator = 'PLACEHOLDER FOR PATHFINDER OPERATOR'
